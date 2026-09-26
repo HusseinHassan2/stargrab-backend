@@ -1,2 +1,0 @@
-# stargrab-backend
-Stargrap
