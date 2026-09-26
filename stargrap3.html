@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    
+    <meta name="google-site-verification" content="lf4v-9P9Umm9SQRXXU8jXp-WZc_pF6CeCoKoGfwsHpE" />
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="StarGrab">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#6c5ce7">
+    <meta name="description" content="StarGrab - تحميل مقاطع تيك توك بدون علامة مائيه ،وتحميل غلاف يوتيوب عالي الجودة .">
+    <link rel="apple-touch-icon" href="https://kommodo.ai/i/OYXxbPWaOiMH37shxyAb">
+    
+    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22StarGrab%22,%22short_name%22:%22StarGrab%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%230a0a0b%22,%22theme_color%22:%22%236c5ce7%22,%22icons%22:[{%22src%22:%22https://kommodo.ai/i/OYXxbPWaOiMH37shxyAb%22,%22sizes%22:%22192x192%22,%22type%22:%22image/png%22}]}">
+
+    <title>StarGrab</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gifshot/0.4.5/gifshot.min.js"></script>
+    
+    <script src="https://pl30321749.effectivecpmnetwork.com/14/8d/20/148d201763f6f8f87438ff2665f95cb3.js"></script>
+    
+    <script src="https://pl30376794.effectivecpmnetwork.com/b8/c7/8e/b8c78ed8337dcdd222272cfc7d989eb5.js"></script>
+    
+    <script>
+      atOptions = {
+        'key' : '0ea0230a96059d931dd5295914aef214',
+        'format' : 'iframe',
+        'height' : 300,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/0ea0230a96059d931dd5295914aef214/invoke.js"></script>
+    
+    <style>
+        @font-face {
+            font-family: 'AppleEmojiCustom';
+            src: url('iOS_14.6.ttf') format('truetype');
+            unicode-range: U+1F600-1F64F, U+1F300-1F5FF, U+1F680-1F6FF, U+2600-26FF, U+2700-27BF, U+1F900-1F9FF, U+1F1E6-1F1FF;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --bg: #0a0a0b;
+            --card: #161618;
+            --input-border: #2d2d30;
+            --accent: #00d1b2;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --error: #ff4757;
+            --star-color: #f1c40f;
+            --tiktok-bg: #000000;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gif-color: #e67e22;
+            --yt-color: #ff0000;
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --input-border: #dcdde1;
+            --text: #1a1a1c;
+            --text-dim: #57606f;
+            --tiktok-bg: #000000; 
+            --glass: rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
+
+        * { 
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; 
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'AppleEmojiCustom', 'IBM Plex Sans Arabic', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; position: relative;
+            overflow-y: auto; 
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .top-controls-right {
+            position: absolute; top: 20px; right: 20px;
+            display: flex; gap: 10px; z-index: 1000;
+        }
+
+        html[dir="ltr"] .top-controls-right {
+            right: auto; left: 20px;
+        }
+
+        .icon-btn {
+            width: 42px; height: 42px;
+            background: var(--card); border: 1px solid var(--input-border);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--primary); font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .save-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); z-index: 11000;
+            display: none; align-items: center; justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .save-modal {
+            background: #1c1c1e; width: 90%; max-width: 320px;
+            border-radius: 20px; overflow: hidden; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .save-modal-body { padding: 25px 20px; }
+        .save-modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .save-modal-text { color: #ebebf599; font-size: 0.95rem; }
+        .save-modal-footer { display: flex; border-top: 1px solid #38383a; }
+        .modal-btn { 
+            flex: 1; padding: 15px; font-size: 1rem; font-weight: 600; 
+            cursor: pointer; border: none; background: transparent;
+        }
+        .btn-cancel { color: #ff453a; border-left: 1px solid #38383a; }
+        html[dir="ltr"] .btn-cancel { border-left: none; border-right: 1px solid #38383a; }
+        .btn-confirm { color: #0a84ff; }
+
+        .full-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg);
+            z-index: 2000; display: flex; flex-direction: column; align-items: center;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .full-overlay.active { transform: translateY(0); }
+        
+        .overlay-header-row {
+            display: flex; width: 100%; justify-content: space-between; align-items: center; margin-bottom: 20px;
+        }
+        .close-overlay { font-size: 1.5rem; cursor: pointer; color: var(--primary); transition: transform 0.3s; }
+        html[dir="ltr"] .close-overlay.fa-arrow-right { transform: rotate(180deg); }
+        .close-overlay:hover { transform: scale(1.1); }
+        
+        .top-left-actions-row {
+            display: flex; gap: 10px; align-items: center;
+        }
+        
+        .info-trigger-btn { font-size: 1.4rem; cursor: pointer; color: var(--primary); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: var(--card); border: 1px solid var(--input-border); border-radius: 12px; transition: 0.3s; }
+        .info-trigger-btn:hover { border-color: var(--primary); color: var(--secondary); }
+
+        .social-accordion { width: 100%; max-width: 400px; margin-top: 10px; }
+        .social-header { background: var(--card); border: 1px solid var(--input-border); padding: 16px; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; color: var(--primary); transition: 0.3s; }
+        .social-header:hover { border-color: var(--primary); }
+        .social-content { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.77, 0, 0.175, 1); display: flex; flex-direction: column; gap: 12px; padding-top: 0; }
+        .social-accordion.open .social-content { max-height: 1000px; padding-top: 15px; }
+        .social-accordion.open .fa-chevron-down { transform: rotate(180deg); }
+
+        .social-card { width: 100%; max-width: 400px; padding: 16px; border-radius: 18px; text-decoration: none; color: white !important; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; opacity: 0; transform: translateY(20px); transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .social-accordion.open .social-card { opacity: 1; transform: translateY(0); }
+        .social-accordion.open .social-card:nth-child(1) { transition-delay: 0.1s; }
+        .social-accordion.open .social-card:nth-child(2) { transition-delay: 0.2s; }
+        .social-accordion.open .social-card:nth-child(3) { transition-delay: 0.3s; }
+        .social-accordion.open .social-card:nth-child(4) { transition-delay: 0.4s; }
+        
+        .social-tiktok { background: var(--tiktok-bg); border: 1px solid #333; }
+        .social-insta { background: linear-gradient(45deg, #f09433, #bc1888); }
+        .social-fb { background: #1877f2; }
+        .social-yt { background: #ff0000; }
+
+        .policy-container { width: 100%; max-width: 600px; margin: 0 auto; text-align: right; padding: 10px 5px; }
+        html[dir="ltr"] .policy-container { text-align: left; }
+        .policy-title { font-size: 1.6rem; font-weight: 700; color: var(--primary); text-align: center; margin-bottom: 25px; border-bottom: 2px solid var(--input-border); padding-bottom: 15px; }
+        .policy-section { background: var(--card); border: 1px solid var(--input-border); padding: 20px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        
+        .policy-section h4 { 
+            font-size: clamp(0.95rem, 4.2vw, 1.15rem); 
+            font-weight: 700; 
+            color: var(--secondary); 
+            margin-top: 0; 
+            margin-bottom: 12px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .policy-section h4 i { font-size: 0.95rem; color: var(--accent); flex-shrink: 0; }
+        .policy-section p { font-size: 0.95rem; color: var(--text); line-height: 1.7; margin: 0; font-weight: 400; text-align: justify; }
+        .policy-footer { text-align: center; margin-top: 35px; padding: 20px; border-top: 1px solid var(--input-border); font-size: 0.95rem; color: var(--text-dim); font-weight: 700; letter-spacing: 0.5px; }
+
+        .brand { 
+            position: relative;
+            font-size: clamp(2.3rem, 8vw, 3.5rem); 
+            font-weight: 900; 
+            margin: 80px 0 30px; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--primary)); 
+            background-size: 200% auto;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-align: center; 
+            overflow: hidden;
+        }
+
+        .brand::after {
+            content: "StarGrab";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s infinite linear;
+            z-index: 1;
+        }
+
+        @keyframes shine {
+            0% { background-position: 200% 0; }
+            25% { background-position: -200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .container { width: 100%; max-width: 550px; padding: 0 10px; }
+        .input-group { position: relative; margin-bottom: 20px; }
+        .input-box { width: 100%; padding: 20px 55px 20px 20px; background: var(--card); border: 2px solid var(--input-border); border-radius: 22px; color: var(--text); font-size: 1rem; outline: none; text-align: right; direction: ltr; }
+        html[dir="ltr"] .input-box { text-align: left; padding: 20px 20px 20px 55px; }
+        .input-box::placeholder { direction: rtl; color: var(--text-dim); }
+        html[dir="ltr"] .input-box::placeholder { direction: ltr; }
+        
+        .paste-btn { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; cursor: pointer; }
+        html[dir="ltr"] .paste-btn { left: auto; right: 18px; }
+        
+        .main-btn { width: 100%; padding: 18px; background: var(--primary); border: none; border-radius: 20px; color: white; font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        .profile-card {
+            display: none; background: var(--card); border: 1px solid var(--input-border); border-radius: 25px; padding: 15px; margin-top: 15px; flex-direction: column; gap: 15px; width: 100%;
+        }
+        .profile-header { display: flex; align-items: center; gap: 12px; text-align: right; }
+        html[dir="ltr"] .profile-header { text-align: left; }
+        .profile-avatar { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover; }
+        .profile-names { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .profile-name { font-weight: 700; font-size: 1.1rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        .profile-handle-wrapper { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; }
+        .profile-handle { font-size: 0.85rem; color: var(--text-dim); direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        .verify-badge { 
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            width: 14px;
+            height: 14px;
+            min-width: 14px;
+            background-color: #20d5ec; 
+            color: #fff;
+            border-radius: 50%;
+            font-size: 8px;
+            margin-right: 2px;
+        }
+
+        .profile-stats { display: flex; justify-content: space-between; background: var(--glass); padding: 10px; border-radius: 15px; }
+        .stat-box { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--text-dim); }
+        .stat-box i { color: var(--primary); }
+        .stat-num { color: var(--text); font-weight: 700; }
+        .profile-desc { font-size: 0.85rem; color: var(--text-dim); text-align: right; line-height: 1.5; margin: 0; }
+        html[dir="ltr"] .profile-desc { text-align: left; }
+
+        .video-card { display: none; margin-top: 25px; background: var(--card); border-radius: 25px; padding: 15px; border: 1px solid var(--input-border); }
+        .video-preview { width: 100%; border-radius: 18px; overflow: hidden; background: #000; position: relative; display: flex; align-items: center; justify-content: center; min-height: 300px; }
+        #videoContainer { position: relative; width: 100%; display: flex; flex-direction: column; }
+        video { width: 100%; max-height: 600px; display: block; cursor: default; }
+
+        #imageSlider { width: 100%; display: none; position: relative; background: #000; overflow: hidden; }
+        .slider-wrapper { display: flex; width: 100%; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); touch-action: pan-y; direction: ltr; }
+        .slider-img { width: 100%; flex-shrink: 0; object-fit: contain; max-height: 600px; min-height: 300px; display: block; }
+        
+        .slider-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.1rem; cursor: pointer; z-index: 100; border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .slider-arrow-prev { left: 10px; } 
+        .slider-arrow-next { right: 10px; }
+
+        .slider-dots {
+            position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 90; background: rgba(0,0,0,0.4); padding: 5px 12px; border-radius: 20px;
+            flex-direction: row-reverse; 
+        }
+        .dot { width: 7px; height: 7px; background: rgba(255,255,255,0.3); border-radius: 50%; transition: 0.4s; cursor: pointer; }
+        .dot.active { background: #fff; transform: scale(1.3); }
+
+        .glass-audio-player {
+            display: none; margin-top: 15px; background: var(--glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border); border-radius: 20px; padding: 15px; flex-direction: column; gap: 10px;
+            position: relative; overflow: hidden;
+        }
+        .glass-audio-player::before {
+            content: ""; position: absolute; top: 0; right: -150%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: shimmer-effect 3.5s infinite; pointer-events: none; z-index: 1;
+        }
+        @keyframes shimmer-effect { 0% { right: -150%; } 50% { right: 150%; } 100% { right: 150%; } }
+
+        .audio-info { display: flex; align-items: center; gap: 12px; margin-bottom: 5px; position: relative; z-index: 2; }
+        .audio-disc-wrapper { 
+            width: 50px; height: 50px; border-radius: 50%; background: var(--glass); 
+            border: 1px solid var(--glass-border); display: flex; align-items: center; 
+            justify-content: center; overflow: hidden; position: relative;
+            animation: rotateDisc 5s linear infinite; animation-play-state: paused;
+        }
+        .audio-disc-wrapper.playing { animation-play-state: running; }
+        .audio-disc-wrapper img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .audio-disc-center { position: absolute; width: 12px; height: 12px; background: var(--card); border-radius: 50%; border: 2px solid var(--glass-border); }
+        @keyframes rotateDisc { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        .audio-text { flex: 1; font-size: 0.9rem; font-weight: 700; color: var(--text); }
+        .audio-controls { display: flex; align-items: center; gap: 15px; width: 100%; position: relative; z-index: 2; }
+        .audio-main-btn { font-size: 1.5rem; color: var(--primary); cursor: pointer; order: 3; }
+        .audio-progress-container { flex: 1; height: 12px; background: rgba(255,255,255,0.25); border-radius: 6px; position: relative; cursor: pointer; order: 2; display: flex; align-items: center; direction: ltr; }
+        .audio-progress-fill { height: 4px; background: var(--primary); border-radius: 2px; width: 0%; position: relative; pointer-events: none; }
+        .audio-progress-handle {
+            position: absolute; left: 0%; top: 50%; transform: translate(-50%, -50%);
+            width: 14px; height: 14px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px rgba(0,0,0,0.6);
+            z-index: 10; pointer-events: none; transition: none;
+        }
+        .audio-time { font-family: monospace; font-size: 0.75rem; color: var(--text-dim); min-width: 35px; order: 1; text-align: left; }
+
+        .custom-controls { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 15px; display: flex; flex-direction: column; gap: 8px; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 20; }
+        .custom-controls.visible { opacity: 1; visibility: visible; }
+        .time-display { display: flex; justify-content: space-between; font-size: 0.8rem; color: #fff; font-family: monospace; }
+        .progress-bar-container { width: 100%; height: 12px; background: rgba(255,255,255,0.25); border-radius: 6px; cursor: pointer; position: relative; margin: 12px 0; display: flex; align-items: center; direction: ltr; }
+        .progress-bar-fill { height: 4px; background: var(--primary); width: 0%; border-radius: 2px; position: relative; pointer-events: none; }
+        .progress-handle { position: absolute; left: 0%; top: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; background: #ffffff; border-radius: 50%; box-shadow: 0 0 6px rgba(0,0,0,0.6); pointer-events: none; transition: none; }
+        .player-btns { display: flex; align-items: center; justify-content: space-between; }
+        .player-btns-group { display: flex; align-items: center; gap: 18px; }
+        .player-btns i { color: #fff; font-size: 1.4rem; cursor: pointer; }
+
+        .skip-feedback { position: absolute; top: 50%; transform: translateY(-50%); width: 80px; height: 80px; background: rgba(255,255,255,0.15); border-radius: 50%; display: none; align-items: center; justify-content: center; flex-direction: column; font-size: 0.8rem; color: #fff; z-index: 5; }
+        .skip-left { left: 15%; } .skip-right { right: 15%; }
+        .video-end-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 25; }
+        .replay-icon { width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; }
+
+        .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .btn-action { padding: 12px; border: none; border-radius: 12px; color: white; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-music-action { grid-column: span 2; display: none; background: #34ace0; }
+        .btn-gif-action { grid-column: span 2; display: none; background: var(--gif-color); }
+        .btn-yt-thumb { grid-column: span 2; display: none; background: var(--yt-color); }
+        .btn-reset { grid-column: span 2; color: var(--text); }
+        
+        .history-section { width: 100%; margin-top: 30px; border-top: 1px solid var(--input-border); padding-top: 20px; }
+        .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .history-header h3 { font-size: 0.95rem; margin: 0; color: var(--text-dim); }
+        .archive-trigger { color: var(--primary); font-size: 1.2rem; cursor: pointer; }
+        .history-item { background: var(--card); padding: 15px; border-radius: 20px; margin-bottom: 12px; border: 1px solid var(--input-border); display: flex; align-items: center; justify-content: space-between; gap: 15px; width: 100%; }
+        .history-content { flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 65px; overflow: hidden; }
+        .history-url { direction: ltr; font-size: 0.8rem; color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .history-btn { color: var(--primary); font-weight: 700; cursor: pointer; font-size: 0.9rem; align-self: flex-start; }
+        .history-thumb { width: 65px; height: 65px; border-radius: 12px; object-fit: cover; background: #222; flex-shrink: 0; }
+        
+        #customAlert { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid var(--input-border); display: flex; align-items: center; gap: 10px; z-index: 10000; transition: 0.4s; color: var(--text); }
+        #customAlert.show { top: 20px; }
+        .star-loader { display: none; font-size: 1.4rem; color: transparent; -webkit-text-stroke: 1.5px var(--star-color); animation: starAnim 1s infinite linear; }
+        @keyframes starAnim { to { transform: rotate(360deg); } }
+
+        .btn-copy-yt { grid-column: span 2 !important; display: none; background: var(--input-border) !important; color: var(--text) !important; }
+        .yt-mode-active .slider-arrow { display: none !important; }
+        .yt-mode-active .slider-dots { display: none !important; }
+
+        /* الأنماط المخصصة لقائمة اللغات الجميلة */
+        .lang-list-container {
+            width: 100%; max-width: 400px; margin-top: 15px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .lang-item {
+            background: var(--card); border: 1px solid var(--input-border);
+            padding: 14px 18px; border-radius: 16px; display: flex;
+            align-items: center; justify-content: space-between; cursor: pointer;
+            font-weight: 700; transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .lang-item:hover {
+            border-color: var(--primary); background: var(--glass); transform: scale(1.02);
+        }
+        .lang-item.active {
+            border-color: var(--primary); background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(162,155,254,0.1));
+        }
+        .lang-name-group { display: flex; align-items: center; gap: 12px; }
+        .lang-flag { font-size: 1.3rem; }
+        .lang-check { color: var(--accent); display: none; }
+        .lang-item.active .lang-check { display: block; }
+    </style>
+</head>
+<body data-theme="dark" onclick="hideControls(event)">
+
+    <div class="save-modal-overlay" id="saveModalOverlay">
+        <div class="save-modal">
+            <div class="save-modal-body">
+                <div class="save-modal-title" data-i18n="saveModalTitle">حفظ الوسائط</div>
+                <div class="save-modal-text" id="saveModalMsg" data-i18n="saveModalMsg">هل أردت حفظ...</div>
+            </div>
+            <div class="save-modal-footer">
+                <button class="modal-btn btn-confirm" id="btnSaveThis" data-i18n="btnSaveThis">هذه الصورة</button>
+                <button class="modal-btn btn-confirm" id="btnSaveAll" data-i18n="btnSaveAll">كلتا الصورتين</button>
+                <button class="modal-btn btn-cancel" onclick="closeSaveModal()" data-i18n="btnCancel">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="top-controls-right">
+        <div class="icon-btn" onclick="toggleOverlay('menuOverlay')" title="القائمة"><i class="fas fa-ellipsis-v"></i></div>
+        <div class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الثيم"><i class="fas fa-moon"></i></div>
+    </div>
+
+    <div class="full-overlay" id="menuOverlay">
+        <div class="overlay-header-row">
+            <i class="fas fa-arrow-right close-overlay" onclick="toggleOverlay('menuOverlay')"></i>
+            <div class="top-left-actions-row">
+                <div class="info-trigger-btn" onclick="toggleOverlay('langOverlay')" title="اللغات | Languages"><i class="fas fa-globe"></i></div>
+                <div class="info-trigger-btn" onclick="openPolicyPage()" title="سياسة الخصوصية"><i class="fas fa-exclamation"></i></div>
+            </div>
+        </div>
+        <div class="social-accordion" id="socialAccordion" style="margin-top: 20px;">
+            <div class="social-header" onclick="document.getElementById('socialAccordion').classList.toggle('open')">
+                <span data-i18n="socialMedia">مواقع التواصل الاجتماعي</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="social-content">
+                <a href="https://www.tiktok.com/@72rxb" target="_blank" class="social-card social-tiktok"><span data-i18n="tiktok">تيك توك</span> <i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/72rxb" target="_blank" class="social-card social-insta"><span data-i18n="instagram">انستغرام</span> <i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1D54JBBkJh/" target="_blank" class="social-card social-fb"><span data-i18n="facebook">فيسبوك</span> <i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@72rxb" target="_blank" class="social-card social-yt"><span data-i18n="youtube">يوتيوب</span> <i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-overlay" id="langOverlay">
+        <div class="overlay-header-row">
+            <i class="fas fa-arrow-right close-overlay" onclick="toggleOverlay('langOverlay')"></i>
+            <div style="width: 42px;"></div>
+        </div>
+        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; width: 100%; text-align: center;" data-i18n="selectLanguage">اختر اللغة / Select Language</div>
+        <div class="lang-list-container" id="languagesContainer">
+            </div>
+    </div>
+
+    <div class="full-overlay" id="policyOverlay">
+        <div class="overlay-header-row">
+            <i class="fas fa-arrow-right close-overlay" onclick="toggleOverlay('policyOverlay')"></i>
+            <div style="width: 42px;"></div>
+        </div>
+        <div class="policy-container">
+            <div class="policy-title" data-i18n="policyTitle">سياسة الخصوصية وشروط الاستخدام</div>
+            
+            <div class="policy-section">
+                <h4 data-i18n="policySec1Head"><i class="fas fa-gavel"></i> مقدمة وإخلاء مسؤولية قانونية عام</h4>
+                <p data-i18n="policySec1Text">مرحباً بكم في منصة StarGrab. تعد هذه الاتفاقية عقداً قانونياً ملزماً بين المستخدم وإدارة المنصة. باستخدامك لهذا الموقع، فإنك تقر وتوافق بكامل أهليتك القانونية على جميع الشروط والأحكام الواردة أدناه دون قيد أو شرط.</p>
+            </div>
+
+            <div class="policy-section">
+                <h4 data-i18n="policySec2Head"><i class="fas fa-shield-alt"></i> طبيعة الخدمة وحدود المسؤولية القانونية</h4>
+                <p data-i18n="policySec2Text">منصة StarGrab هي أداة تقنية وبرمجية مستقلة تعمل كـ (مستخرج وسائط ومحتوى علني) من روابط شبكات التواصل الاجتماعي المتاحة للعامة. الموقع لا يقوم باستضافة، تخزين، رفع، أو إعادة نشر أي ملفات على سيرفراته الخاصة.</p>
+            </div>
+
+            <div class="policy-section">
+                <h4 data-i18n="policySec3Head"><i class="fas fa-copyright"></i> حقوق الملكية الفكرية ومحتوى الطرف الثالث</h4>
+                <p data-i18n="policySec3Text">جميع حقوق الملكية الفكرية، العلامات التجارية، والشعارات الخاصة بمنصات التواصل الاجتماعي هي ملك حصري لأصحابها وشركاتها الأم، ولا تدعي منصة StarGrab أي ملكية أو ارتباط رسمي بها.</p>
+            </div>
+
+            <div class="policy-section">
+                <h4 data-i18n="policySec4Head"><i class="fas fa-user-lock"></i> سياسة حماية البيانات وصيانة الخصوصية</h4>
+                <p data-i18n="policySec4Text">نحن في StarGrab نولي خصوصية المستخدمين أهمية قصوى. الموقع مصمم ليعمل بدون الحاجة إلى إنشاء حساب، تسجيل دخول, أو تقديم أي بيانات شخصية.</p>
+            </div>
+
+            <div class="policy-section">
+                <h4 data-i18n="policySec5Head"><i class="fas fa-sync-alt"></i> التعديلات والتحديثات القانونية الملزمة</h4>
+                <p data-i18n="policySec5Text">تمتلك إدارة منصة StarGrab الحق الكامل والمطلق في تعديل، تحديث، تغيير، أو حذف أي بند من بنود هذه السياسة في أي وقت تراه مناسباً ودون الحاجة إلى إشعار مسبق للمستخدمين.</p>
+            </div>
+
+            <div class="policy-section">
+                <h4 data-i18n="policySec6Head"><i class="fas fa-balance-scale"></i> القانون الواجب التطبيق والنزاعات القضائية</h4>
+                <p data-i18n="policySec6Text">تخضع هذه الاتفاقية والشروط الواردة فيها ويتم تفسيرها وفقاً للقوانين والأنظمة القانونية السارية، وأي نزاع قانوني ينشأ عن استخدام هذه المنصة يتم البت فيه حصرياً أمام المحاكم المختصة.</p>
+            </div>
+
+            <div class="policy-footer" data-i18n="policyFooter">
+                تم التطوير بواسطة شركة We stars العراقية.
+            </div>
+        </div>
+    </div>
+
+    <div class="full-overlay" id="archiveOverlay">
+        <div class="overlay-header-row">
+            <i class="fas fa-arrow-right close-overlay" onclick="toggleOverlay('archiveOverlay')"></i>
+            <div style="width: 42px;"></div>
+        </div>
+        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; width: 100%; text-align: center;" data-i18n="archiveTitle">أرشيف التحميلات</div>
+        <div id="fullHistoryContainer" style="width: 100%; max-width: 550px;"></div>
+    </div>
+
+    <div class="brand">StarGrab</div>
+
+    <div class="container">
+        <div class="input-group">
+            <input type="text" id="urlInput" class="input-box" placeholder="...الصق الرابط هنا">
+            <i class="fas fa-paste paste-btn" onclick="pasteLink()"></i>
+        </div>
+        <button class="main-btn" onclick="processVideo()">
+            <span id="btnText" data-i18n="extractBtn">استخراج المحتوى</span>
+            <i class="far fa-star star-loader" id="starLoader"></i>
+        </button>
+
+        <div id="profileCard" class="profile-card">
+            <div class="profile-header">
+                <img id="creatorAvatar" class="profile-avatar" src="" alt="Avatar">
+                <div class="profile-names">
+                    <span id="creatorName" class="profile-name">اسم الحساب</span>
+                    <div class="profile-handle-wrapper">
+                        <span id="creatorHandle" class="profile-handle">@username</span>
+                        <div id="verifyBadge" class="verify-badge"><i class="fas fa-check"></i></div>
+                    </div>
+                </div>
+            </div>
+            <p id="videoDesc" class="profile-desc">وصف المحتوى المستخرج يظهر هنا بشكل جميل...</p>
+            <div class="profile-stats">
+                <div class="stat-box"><i class="fas fa-play"></i><span id="statViews" class="stat-num">0</span><span data-i18n="views">مشاهدة</span></div>
+                <div class="stat-box"><i class="fas fa-heart"></i><span id="statLikes" class="stat-num">0</span><span data-i18n="إعجاب">إعجاب</span></div>
+                <div class="stat-box"><i class="fas fa-comment"></i><span id="statComments" class="stat-num">0</span><span data-i18n="تعليق">تعليق</span></div>
+                <div class="stat-box"><i class="fas fa-share" id="statSharesBtn"></i><span id="statShares" class="stat-num">0</span><span data-i18n="مشاركة">مشاركة</span></div>
+            </div>
+        </div>
+
+        <div id="resultCard" class="video-card">
+            <div id="videoContainer" class="video-preview" onclick="showControls(event)">
+                <div id="imageSlider">
+                    <div class="slider-wrapper" id="sliderWrapper"></div>
+                    <div class="slider-arrow slider-arrow-prev" onclick="handleArrowClick(-1, event)"><i class="fas fa-chevron-left"></i></div>
+                    <div class="slider-arrow slider-arrow-next" onclick="handleArrowClick(1, event)"><i class="fas fa-chevron-right"></i></div>
+                    <div class="slider-dots" id="sliderDots"></div>
+                </div>
+
+                <video id="videoPlayer" crossorigin="anonymous" playsinline onclick="handleVideoTap(event)"></video>
+                
+                <div id="videoEndOverlay" class="video-end-overlay">
+                    <div class="replay-icon" onclick="replayVideo()"><i class="fas fa-redo-alt"></i></div>
+                </div>
+
+                <div id="skipLeft" class="skip-feedback skip-left"><i class="fas fa-forward"></i><span>10s</span></div>
+                <div id="skipRight" class="skip-feedback skip-right"><i class="fas fa-backward"></i><span>10s</span></div>
+
+                <div class="custom-controls" id="controlsLayer">
+                    <div class="time-display"><span id="currentTime">00:00</span><span id="totalTime">00:00</span></div>
+                    <div class="progress-bar-container" id="progressContainer">
+                        <div class="progress-bar-fill" id="progressBar"></div>
+                        <div class="progress-handle" id="progressHandle"></div>
+                    </div>
+                    <div class="player-btns">
+                        <div class="player-btns-group">
+                            <i class="fas fa-play" id="playPauseBtn" onclick="togglePlay(event)"></i>
+                            <i class="fas fa-volume-up" id="muteBtn" onclick="toggleMute(event)"></i>
+                        </div>
+                        <i class="fas fa-expand" onclick="toggleFullscreen(event)"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div id="glassAudioPlayer" class="glass-audio-player">
+                <div class="audio-info">
+                    <div class="audio-disc-wrapper" id="audioDisc">
+                        <img id="audioThumb" src="" alt="Album Art">
+                        <div class="audio-disc-center"></div>
+                    </div>
+                    <div class="audio-text" data-i18n="extractedMusic">الموسيقى المستخرجة</div>
+                    <div class="audio-time" id="audioCurrentTime">00:00</div>
+                </div>
+                <div class="audio-controls">
+                    <i class="fas fa-play audio-main-btn" id="audioPlayBtn" onclick="toggleAudio()"></i>
+                    <div class="audio-progress-container" id="audioProgressContainer">
+                        <div class="audio-progress-fill" id="audioProgressBar"></div>
+                        <div class="audio-progress-handle" id="audioHandle"></div>
+                    </div>
+                    <div class="audio-time" id="audioDuration">00:00</div>
+                </div>
+                <audio id="mainAudioSource" crossorigin="anonymous"></audio>
+            </div>
+
+            <div class="actions" id="actionsButtons">
+                <button id="mainDownloadBtn" onclick="handleDownloadRequest()" class="btn-action" style="background:var(--accent);"><span data-i18n="saveBtn">حفظ</span> <i class="fas fa-download"></i></button>
+                <button id="normalCopyBtn" onclick="copyLink()" class="btn-action" style="background:var(--input-border); color:var(--text);"><span data-i18n="copyBtn">نسخ</span> <i class="fas fa-copy"></i></button>
+                
+                <button id="musicDownloadBtn" onclick="downloadMusic()" class="btn-action btn-music-action"><span data-i18n="saveMusicBtn">حفظ الموسيقى</span> <i class="fas fa-music"></i></button>
+                <button id="gifBtn" onclick="convertToGif()" class="btn-action btn-gif-action"><span data-i18n="gifBtn">تحويل الفيديو إلى GIF</span> <i class="fas fa-file-image"></i></button>
+                <button id="ytThumbBtn" onclick="downloadYTThumb()" class="btn-action btn-yt-thumb"><span data-i18n="saveThumbBtn">حفظ الغلاف (HD)</span> <i class="fas fa-image"></i></button>
+                <button id="ytCopyBtn" onclick="copyLink()" class="btn-action btn-copy-yt"><span data-i18n="copyBtn">نسخ</span> <i class="fas fa-copy"></i></button>
+                
+                <button onclick="location.reload()" class="btn-action btn-reset" style="background:var(--input-border);"><span data-i18n="newBtn">جديد</span> <i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+
+        <div class="history-section" id="historySection">
+            <div class="history-header">
+                <h3 data-i18n="latestDownloads">آخر التحميلات:</h3>
+                <i class="fas fa-box-archive archive-trigger" onclick="toggleOverlay('archiveOverlay')"></i>
+            </div>
+            <div id="mainHistoryList"></div>
+        </div>
+    </div>
+
+    <div id="customAlert"><i id="alertIcon" class="fas fa-info-circle"></i><span id="alertMsg"></span></div>
+
+    <script>
+        // قواميس الترجمة الكاملة لأهم 10 لغات في العالم متضمنة الاتجاه والنصوص
+        const translations = {
+            ar: {
+                dir: "rtl",
+                placeholder: "...الصق الرابط هنا",
+                extractBtn: "استخراج المحتوى",
+                saveModalTitle: "حفظ الوسائط",
+                saveModalMsg: "هل أردت حفظ...",
+                btnSaveThis: "هذه الصورة",
+                btnSaveAll: "كلتا الصورتين",
+                btnCancel: "إلغاء",
+                socialMedia: "مواقع التواصل الاجتماعي",
+                tiktok: "تيك توك", instagram: "انستغرام", facebook: "فيسبوك", youtube: "يوتيوب",
+                selectLanguage: "اختر اللغة / Select Language",
+                policyTitle: "سياسة الخصوصية وشروط الاستخدام",
+                policySec1Head: "مقدمة وإخلاء مسؤولية قانونية عام",
+                policySec1Text: "مرحباً بكم في منصة StarGrab. تعد هذه الاتفاقية عقداً قانونياً ملزماً بين المستخدم وإدارة المنصة. باستخدامك لهذا الموقع، فإنك تقر وتوافق بكامل أهليتك القانونية على جميع الشروط والأحكام الواردة أدناه دون قيد أو شرط.",
+                policySec2Head: "طبيعة الخدمة وحدود المسؤولية القانونية",
+                policySec2Text: "منصة StarGrab هي أداة تقنية وبرمجية مستقلة تعمل كـ (مستخرج وسائط ومحتوى علني) من روابط شبكات التواصل الاجتماعي المتاحة للعامة. الموقع لا يقوم باستضافة، تخزين، رفع، أو إعادة نشر أي ملفات على سيرفراته الخاصة.",
+                policySec3Head: "حقوق الملكية الفكرية ومحتوى الطرف الثالث",
+                policySec3Text: "جميع حقوق الملكية الفكرية، العلامات التجارية، والشعارات الخاصة بمنصات التواصل الاجتماعي هي ملك حصري لأصحابها وشركاتها الأم، ولا تدعي منصة StarGrab أي ملكية أو ارتباط رسمي بها.",
+                policySec4Head: "سياسة حماية البيانات وصيانة الخصوصية",
+                policySec4Text: "نحن في StarGrab نولي خصوصية المستخدمين أهمية قصوى. الموقع مصمم ليعمل بدون الحاجة إلى إنشاء حساب، تسجيل دخول, أو تقديم أي بيانات شخصية.",
+                policySec5Head: "التعديلات والتحديثات القانونية الملزمة",
+                policySec5Text: "تمتلك إدارة منصة StarGrab الحق الكامل والمطلق في تعديل، تحديث، تغيير، أو حذف أي بند من بنود هذه السياسة في أي وقت تراه مناسباً ودون الحاجة إلى إشعار مسبق للمستخدمين.",
+                policySec6Head: "القانون الواجب التطبيق والنزاعات القضائية",
+                policySec6Text: "تخضع هذه الاتفاقية والشروط الواردة فيها ويتم تفسيرها وفقاً للقوانين والأنظمة القانونية السارية، وأي نزاع قانوني ينشأ عن استخدام هذه المنصة يتم البت فيه حصرياً أمام المحاكم المختصة.",
+                policyFooter: "تم التطوير بواسطة شركة We stars العراقية.",
+                archiveTitle: "أرشيف التحميلات",
+                views: "مشاهدة", likes: "إعجاب", comments: "تعليق", shares: "مشاركة",
+                extractedMusic: "الموسيقى المستخرجة",
+                saveBtn: "حفظ", copyBtn: "نسخ", saveMusicBtn: "حفظ الموسيقى", gifBtn: "تحويل الفيديو إلى GIF", saveThumbBtn: "حفظ الغلاف (HD)", newBtn: "جديد",
+                latestDownloads: "آخر التحميلات:",
+                reDownload: "إعادة تحميل",
+                msgEmptyUrl: "ضع الرابط أولاً", msgExtractedThumb: "تم استخراج الغلاف ✨", msgExtracted: "تم الاستخراج ✨", msgNotSupported: "الرابط غير مدعوم", msgProcessingGif: "جاري معالجة الـ GIF...", msgGifSuccess: "تم تحويل الفيديو بنجاح! 🎉", msgGifFail: "عذراً، فشل التحويل", msgPasting: "تم اللصق", msgPermission: "يرجى إعطاء صلاحية اللصق", msgCopied: "تم النسخ", msgDownloadingImg: "جاري تحميل الصورة...", msgBulkDownload: "جاري تحميل {count} صور...", msgDownloading: "جاري التحميل...", msgDownloadError: "خطأ في التحميل", msgMusicDownloading: "جاري تحميل الموسيقى...", msgMusicError: "خطأ في تحميل الموسيقى"
+            },
+            en: {
+                dir: "ltr", placeholder: "Paste link here...", extractBtn: "Extract Content",
+                saveModalTitle: "Save Media", saveModalMsg: "Do you want to save...", btnSaveThis: "This Image", btnSaveAll: "Both Images", btnCancel: "Cancel",
+                socialMedia: "Social Media Platforms", tiktok: "TikTok", instagram: "Instagram", facebook: "Facebook", youtube: "YouTube",
+                selectLanguage: "Select Language", policyTitle: "Privacy Policy & Terms of Use",
+                policySec1Head: "Introduction & General Legal Disclaimer", policySec1Text: "Welcome to StarGrab. This agreement is a legally binding contract between the user and the platform administration. By using this site, you acknowledge and agree to all terms below.",
+                policySec2Head: "Nature of Service & Limits of Legal Liability", policySec2Text: "StarGrab is an independent software tool that acts as a public media extractor from public social network links. The site does not host, store, or upload any files on its servers.",
+                policySec3Head: "Intellectual Property Rights & Third-Party Content", policySec3Text: "All intellectual property rights, trademarks, and logos of social media platforms are the exclusive property of their owners. StarGrab claims no ownership.",
+                policySec4Head: "Data Protection Policy & Privacy Maintenance", policySec4Text: "We value user privacy. The site is designed to operate without the need to create an account, log in, or provide any personal data.",
+                policySec5Head: "Binding Legal Amendments & Updates", policySec5Text: "StarGrab administration reserves the absolute right to modify, update, change, or delete any clause of this policy at any time without prior notice.",
+                policySec6Head: "Applicable Law & Legal Disputes", policySec6Text: "This agreement shall be governed by and construed in accordance with applicable laws, and any legal dispute shall be settled exclusively before competent courts.",
+                policyFooter: "Developed by Iraqi company We stars.", archiveTitle: "Download Archive",
+                views: "Views", likes: "Likes", comments: "Comments", shares: "Shares", extractedMusic: "Extracted Music",
+                saveBtn: "Save", copyBtn: "Copy", saveMusicBtn: "Save Music", gifBtn: "Convert Video to GIF", saveThumbBtn: "Save Cover (HD)", newBtn: "New",
+                latestDownloads: "Latest Downloads:", reDownload: "Redownload",
+                msgEmptyUrl: "Please paste a link first", msgExtractedThumb: "Cover extracted successfully ✨", msgExtracted: "Extracted successfully ✨", msgNotSupported: "Link not supported", msgProcessingGif: "Processing GIF...", msgGifSuccess: "Video converted successfully! 🎉", msgGifFail: "Failed to convert video", msgPasting: "Pasted", msgPermission: "Please grant clipboard permission", msgCopied: "Copied", msgDownloadingImg: "Downloading image...", msgBulkDownload: "Downloading {count} images...", msgDownloading: "Downloading...", msgDownloadError: "Download error", msgMusicDownloading: "Downloading music...", msgMusicError: "Error downloading music"
+            },
+            es: { dir: "ltr", placeholder: "Pegue el enlace aquí...", extractBtn: "Extraer contenido", saveModalTitle: "Guardar medios", saveModalMsg: "¿Quieres guardar...", btnSaveThis: "Esta imagen", btnSaveAll: "Ambas imágenes", btnCancel: "Cancelar", socialMedia: "Redes sociales", selectLanguage: "Seleccionar idioma", policyTitle: "Política de privacidad", views: "Vistas", likes: "Me gusta", comments: "Comentarios", shares: "Compartidos", extractedMusic: "Música extraída", saveBtn: "Guardar", copyBtn: "Copiar", saveMusicBtn: "Guardar música", gifBtn: "Convertir a GIF", saveThumbBtn: "Guardar portada", newBtn: "Nuevo", latestDownloads: "Últimas descanzas:", reDownload: "Descargar de nuevo", policyFooter: "Desarrollado por la empresa iraquí We stars." },
+            fr: { dir: "ltr", placeholder: "Collez le lien ici...", extractBtn: "Extraire le contenu", saveModalTitle: "Enregistrer les médias", saveModalMsg: "Voulez-vous enregistrer...", btnSaveThis: "Cette image", btnSaveAll: "Les deux images", btnCancel: "Annuler", socialMedia: "Réseaux sociaux", selectLanguage: "Choisir la langue", policyTitle: "Politique de confidentialité", views: "Vues", likes: "J'aime", comments: "Commentaires", shares: "Partages", extractedMusic: "Musique extraite", saveBtn: "Enregistrer", copyBtn: "Copier", saveMusicBtn: "Enregistrer la musique", gifBtn: "Convertir en GIF", saveThumbBtn: "Enregistrer la couverture", newBtn: "Nouveau", latestDownloads: "Derniers téléchargements:", reDownload: "Télécharger à nouveau", policyFooter: "Développé par la société irakienne We stars." },
+            de: { dir: "ltr", placeholder: "Link hier einfügen...", extractBtn: "Inhalt extrahieren", saveModalTitle: "Medien speichern", saveModalMsg: "Möchten Sie speichern...", btnSaveThis: "Dieses Bild", btnSaveAll: "Beide Bilder", btnCancel: "Abbrechen", socialMedia: "Soziale Medien", selectLanguage: "Sprache auswählen", policyTitle: "Datenschutzerklärung", views: "Aufrufe", likes: "Likes", comments: "Kommentare", shares: "Freigaben", extractedMusik: "Extrahierte Musik", saveBtn: "Speichern", copyBtn: "Kopieren", saveMusicBtn: "Musik speichern", gifBtn: "In GIF umwandeln", saveThumbBtn: "Cover speichern", newBtn: "Neu", latestDownloads: "Neueste Downloads:", reDownload: "Erneut herunterladen", policyFooter: "Entwickelt von der irakischen Firma We stars." },
+            tr: { dir: "ltr", placeholder: "Bağlantıyı buraya yapıştırın...", extractBtn: "İçeriği Çıkar", saveModalTitle: "Medyayı Kaydet", saveModalMsg: "Kaydetmek istiyor musunuz...", btnSaveThis: "Bu Resim", btnSaveAll: "Her İki Resim", btnCancel: "İptal", socialMedia: "Sosyal Medya", selectLanguage: "Dil Seçin", policyTitle: "Gizlilik Politikası", views: "İzlenme", likes: "Beğeni", comments: "Yorum", shares: "Paylaşım", extractedMusic: "Çıkarılan Müzik", saveBtn: "Kaydet", copyBtn: "Kopyala", saveMusicBtn: "Müziği Kaydet", gifBtn: "GIF'e Dönüştür", saveThumbBtn: "Kapağı Kaydet", newBtn: "Yeni", latestDownloads: "Son İndirmeler:", reDownload: "Tekrar İndir", policyFooter: "Iraklı We stars şirketi tarafından geliştirilmiştir." },
+            hi: { dir: "ltr", placeholder: "यहाँ लिंक पेस्ट करें...", extractBtn: "सामग्री निकालें", saveModalTitle: "मीडिया सहेजें", saveModalMsg: "क्या आप सहेजना चाहते हैं...", btnSaveThis: "यह चित्र", btnSaveAll: "दोनों चित्र", btnCancel: "रद्द करें", socialMedia: "सोशल मीडिया", selectLanguage: "भाषा चुनें", policyTitle: "गोपनीयता नीति", views: "दृश्य", likes: "पसंद", comments: "टिप्पणियाँ", shares: "शेयर", extractedMusic: "निकाला गया संगीत", saveBtn: "सहेजें", copyBtn: "कॉपी करें", saveMusicBtn: "संगीत सहेजें", gifBtn: "GIF में बदलें", saveThumbBtn: "कवर सहेजें", newBtn: "नया", latestDownloads: "नवीनतम डाउनलोड:", reDownload: "पुनः डाउनलोड करें", policyFooter: "इराकी कंपनी We stars द्वारा विकसित।" },
+            zh: { dir: "ltr", placeholder: "在此处粘贴链接...", extractBtn: "提取内容", saveModalTitle: "保存媒体", saveModalMsg: "你想保存...", btnSaveThis: "这张图片", btnSaveAll: "两张图片", btnCancel: "取消", socialMedia: "社交媒体", selectLanguage: "选择语言", policyTitle: "隐私政策", views: "观看次数", likes: "点赞", comments: "评论", shares: "分享", extractedMusic: "提取的音乐", saveBtn: "保存", copyBtn: "复制", saveMusicBtn: "保存音乐", gifBtn: "转换为GIF", saveThumbBtn: "保存封面", newBtn: "全新", latestDownloads: "最新下载:", reDownload: "重新下载", policyFooter: "由伊拉克 We stars 公司开发。" },
+            ru: { dir: "ltr", placeholder: "Вставьте ссылку сюда...", extractBtn: "Извлечь контент", saveModalTitle: "Сохранить медиа", saveModalMsg: "Вы хотите сохранить...", btnSaveThis: "Это изображение", btnSaveAll: "Оба изображения", btnCancel: "Отмена", socialMedia: "Социальные сети", selectLanguage: "Выберите язык", policyTitle: "Политика конфиденциальности", views: "Просмотры", likes: "Лайки", comments: "Комментарии", shares: "Поделились", extractedMusic: "Извлеченная музыка", saveBtn: "Сохранить", copyBtn: "Копировать", saveMusicBtn: "Сохранить музыку", gifBtn: "Конвертировать в GIF", saveThumbBtn: "Сохранить обложку", newBtn: "Новый", latestDownloads: "Последние загрузки:", reDownload: "Скачать заново", policyFooter: "Разработано иракской компанией We stars." },
+            pt: { dir: "ltr", placeholder: "Cole o link aqui...", extractBtn: "Extrair Conteúdo", saveModalTitle: "Salvar Mídia", saveModalMsg: "Deseja salvar...", btnSaveThis: "Esta Imagem", btnSaveAll: "Ambas as Imagens", btnCancel: "Cancelar", socialMedia: "Redes Sociais", selectLanguage: "Selecionar Idioma", policyTitle: "Política de Privacidade", views: "Visualizações", likes: "Curtidas", comments: "Comentários", shares: "Compartilhamentos", extractedMusic: "Música Extraída", saveBtn: "Salvar", copyBtn: "Copiar", saveMusicBtn: "Salvar Música", gifBtn: "Converter para GIF", saveThumbBtn: "Salvar Capa", newBtn: "Novo", latestDownloads: "Downloads Recentes:", reDownload: "Baixar Novamente", policyFooter: "Desenvolvido pela empresa iraquiana We stars." }
+        };
+
+        const availableLanguages = [
+            { code: 'ar', name: 'العربية', flag: '🇮🇶' },
+            { code: 'en', name: 'English', flag: '🇺🇸' },
+            { code: 'es', name: 'Español', flag: '🇪🇸' },
+            { code: 'fr', name: 'Français', flag: '🇫🇷' },
+            { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+            { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+            { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
+            { code: 'zh', name: '简体中文', flag: '🇨🇳' },
+            { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+            { code: 'pt', name: 'Português', flag: '🇧🇷' }
+        ];
+
+        let currentLang = 'ar';
+
+        // دالة نظام الترجمة الفورية والتعرف على لغة المستخدم تلقائياً
+        function initLanguageSystem() {
+            let savedLang = localStorage.getItem('ds_lang');
+            if (!savedLang) {
+                // الكشف التلقائي عن لغة المتصفح / موقع المستخدم فوراً
+                const browserLang = navigator.language || navigator.userLanguage;
+                const shortLang = browserLang.substring(0, 2).toLowerCase();
+                savedLang = translations[shortLang] ? shortLang : 'ar'; // إذا لم تكن من الـ 10 لغات يتم اعتماد العربية تلقائياً
+            }
+            setLanguage(savedLang);
+            renderLanguagesList();
+        }
+
+        function setLanguage(langCode) {
+            if (!translations[langCode]) return;
+            currentLang = langCode;
+            localStorage.setItem('ds_lang', langCode);
+
+            const langData = translations[langCode];
+            
+            // تعديل اتجاه الموقع وترتيبه بسلاسة وبدون أي تخريب هوميكانيكي
+            document.documentElement.setAttribute('lang', langCode);
+            document.documentElement.setAttribute('dir', langData.dir);
+
+            // تطبيق الترجمات على كافة العناصر الثابتة التي تحمل الوسم data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (langData[key]) {
+                    if (el.tagName === 'SPAN' || el.tagName === 'H4' || el.tagName === 'DIV' || el.tagName === 'H3') {
+                        // الحفاظ على الأيقونات الداخلية داخل العناوين والوجوه التعبيرية
+                        const icon = el.querySelector('i');
+                        if (icon) {
+                            el.innerHTML = '';
+                            el.appendChild(icon);
+                            el.appendChild(document.createTextNode(' ' + langData[key]));
+                        } else {
+                            el.innerText = langData[key];
+                        }
+                    } else {
+                        el.innerText = langData[key];
+                    }
+                }
+            });
+
+            // ترجمة النصوص الفريدة والـ Placeholders والأزرار التفاعلية
+            const urlInput = document.getElementById('urlInput');
+            if (urlInput) urlInput.placeholder = langData.placeholder;
+
+            // تحديث كلاسات القائمة النشطة
+            document.querySelectorAll('.lang-item').forEach(item => {
+                if (item.getAttribute('data-lang') === langCode) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function renderLanguagesList() {
+            const container = document.getElementById('languagesContainer');
+            if (!container) return;
+            container.innerHTML = availableLanguages.map(lang => `
+                <div class="lang-item ${lang.code === currentLang ? 'active' : ''}" data-lang="${lang.code}" onclick="handleLanguageChange('${lang.code}')">
+                    <div class="lang-name-group">
+                        <span class="lang-flag">${lang.flag}</span>
+                        <span>${lang.name}</span>
+                    </div>
+                    <i class="fas fa-check lang-check"></i>
+                </div>
+            `).join('');
+        }
+
+        function handleLanguageChange(langCode) {
+            setLanguage(langCode);
+            document.getElementById('langOverlay').classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
+            notify(currentLang === 'ar' ? "تم تغيير اللغة بنجاح" : "Language updated successfully");
+            renderHistory(); // إعادة رندرة السجل ليتوافق مع أزرار الترجمة الجديدة
+        }
+
+        function getI18nText(key, fallback) {
+            return translations[currentLang] && translations[currentLang][key] ? translations[currentLang][key] : fallback;
+        }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = "self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>{})));";
+                const blob = new Blob([swCode], {type: 'text/javascript'});
+                navigator.serviceWorker.register(URL.createObjectURL(blob));
+            });
+        }
+
+        let currentVideoLink = "", currentMusicLink = "", currentYTThumb = "", allImages = [], isImageMode = false, currentImageIndex = 0; 
+        const video = document.getElementById('videoPlayer'), imageSlider = document.getElementById('imageSlider'), sliderWrapper = document.getElementById('sliderWrapper');
+        const controls = document.getElementById('controlsLayer'), playPauseBtn = document.getElementById('playPauseBtn'), progressBar = document.getElementById('progressBar');
+        const audioSource = document.getElementById('mainAudioSource'), audioPlayBtn = document.getElementById('audioPlayBtn'), audioDisc = document.getElementById('audioDisc');
+        const audioProgressBar = document.getElementById('audioProgressBar'), audioThumb = document.getElementById('audioThumb'), audioHandle = document.getElementById('audioHandle');
+        const audioProgressContainer = document.getElementById('audioProgressContainer');
+
+        function showControls(e) { e.stopPropagation(); if(!isImageMode) controls.classList.add('visible'); }
+        function hideControls() { controls.classList.remove('visible'); }
+
+        let tapCount = 0, tapTimer = null;
+        function handleVideoTap(e) {
+            if(isImageMode) return;
+            tapCount++;
+            if (tapCount === 1) { tapTimer = setTimeout(() => { tapCount = 0; }, 300); } 
+            else {
+                clearTimeout(tapTimer); tapCount = 0;
+                const rect = video.getBoundingClientRect();
+                if ((e.clientX - rect.left) > rect.width / 2) { video.currentTime += 10; showFeedback('skipLeft'); } 
+                else { video.currentTime -= 10; showFeedback('skipRight'); }
+            }
+        }
+        function showFeedback(id) { const el = document.getElementById(id); el.style.display = 'flex'; setTimeout(() => { el.style.display = 'none'; }, 600); }
+
+        function togglePlay(e) { e.stopPropagation(); if(video.paused) { video.play(); playPauseBtn.className = 'fas fa-pause'; } else { video.pause(); playPauseBtn.className = 'fas fa-play'; } }
+        function replayVideo() { video.currentTime = 0; video.play(); document.getElementById('videoEndOverlay').style.display = 'none'; }
+        function toggleMute(e) { e.stopPropagation(); video.muted = !video.muted; document.getElementById('muteBtn').className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up'; }
+        function toggleFullscreen(e) { e.stopPropagation(); const target = isImageMode ? imageSlider : video; target.requestFullscreen?.() || target.webkitRequestFullscreen?.(); }
+
+        video.addEventListener('timeupdate', () => { 
+            if(!isDragging) { 
+                const p = (video.currentTime / video.duration) * 100;
+                progressBar.style.width = `${p}%`; 
+                document.getElementById('progressHandle').style.left = `${p}%`;
+                document.getElementById('currentTime').innerText = formatTime(video.currentTime); 
+            } 
+        });
+        video.addEventListener('loadedmetadata', () => { document.getElementById('totalTime').innerText = formatTime(video.duration); });
+        video.addEventListener('ended', () => { playPauseBtn.className = 'fas fa-play'; document.getElementById('videoEndOverlay').style.display = 'flex'; });
+
+        async function processVideo() { 
+            const url = document.getElementById('urlInput').value.trim(); 
+            if(!url) return notify(getI18nText("msgEmptyUrl", "ضع الرابط أولاً"));
+            
+            document.getElementById('btnText').style.display = 'none'; 
+            document.getElementById('starLoader').style.display = 'block';
+            
+            resetInterface();
+
+            try { 
+                if (url.includes("youtube.com") || url.includes("youtu.be")) {
+                    const ytId = extractYTId(url);
+                    if (ytId) {
+                        currentYTThumb = `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+                        isImageMode = true; 
+                        video.style.display = 'none'; 
+                        imageSlider.style.display = 'block';
+                        document.body.classList.add('yt-mode-active'); 
+                        
+                        sliderWrapper.innerHTML = `<img src="${currentYTThumb}" class="slider-img" onerror="this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'">`;
+                        document.getElementById('sliderDots').innerHTML = '<div class="dot active"></div>';
+                        
+                        document.getElementById('profileCard').style.display = 'none';
+                        document.getElementById('glassAudioPlayer').style.display = 'none';
+                        document.getElementById('ytThumbBtn').style.display = 'flex';
+                        document.getElementById('ytCopyBtn').style.display = 'flex';
+                        document.getElementById('mainDownloadBtn').style.display = 'none';
+                        document.getElementById('normalCopyBtn').style.display = 'none';
+                        
+                        document.getElementById('resultCard').style.display = 'block';
+                        saveToHistory(url, `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`);
+                        notify(getI18nText("msgExtractedThumb", "تم استخراج الغلاف ✨"));
+                        return;
+                    }
+                }
+
+                // ربط السيرفر الجديد على Vercel مع المحافظة على التوافق التام
+                const backendUrl = "https://stargrab-ac6lgtpo5-we-star.vercel.app";
+                let api = url.includes("tiktok.com") 
+                    ? `https://www.tikwm.com/api/?url=${encodeURIComponent(url)}` 
+                    : `${backendUrl}/download?url=${encodeURIComponent(url)}`; 
+
+                const res = await fetch(api); 
+                const r = await res.json(); 
+                const d = r.data || r;
+                
+                updateProfileInfo(d, r);
+                currentMusicLink = d?.music || d?.audio || r.music_url || "";
+                const thumb = d?.cover || d?.images?.[0] || r.thumbnail || "";
+                audioThumb.src = thumb;
+
+                if (url.includes("tiktok.com") && d.images && d.images.length > 0) {
+                    isImageMode = true; video.style.display = 'none'; imageSlider.style.display = 'block';
+                    allImages = d.images;
+                    sliderWrapper.innerHTML = d.images.map(img => `<img src="${img}" class="slider-img">`).join('');
+                    document.getElementById('sliderDots').innerHTML = d.images.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}" onclick="handleDotClick(${i})"></div>`).join('');
+                    currentVideoLink = d.images[0]; saveToHistory(url, d.images[0]);
+                } else {
+                    isImageMode = false; video.style.display = 'block'; imageSlider.style.display = 'none';
+                    document.getElementById('gifBtn').style.display = 'flex';
+                    currentVideoLink = d?.play || r.video_url || r.url || d?.downloadUrl; 
+                    if(currentVideoLink) { video.src = currentVideoLink; saveToHistory(url, thumb); } else throw Error();
+                }
+
+                if(currentMusicLink) { 
+                    audioSource.src = currentMusicLink; 
+                    document.getElementById('glassAudioPlayer').style.display = 'flex'; 
+                    document.getElementById('musicDownloadBtn').style.display = 'flex';
+                }
+                document.getElementById('resultCard').style.display = 'block';
+                notify(getI18nText("msgExtracted", "تم الاستخراج ✨"));
+            } catch { notify(getI18nText("msgNotSupported", "الرابط غير مدعوم")); } 
+            finally { document.getElementById('btnText').style.display = 'block'; document.getElementById('starLoader').style.display = 'none'; } 
+        }
+
+        function resetInterface() {
+            document.body.classList.remove('yt-mode-active');
+            document.getElementById('ytThumbBtn').style.display = 'none';
+            document.getElementById('ytCopyBtn').style.display = 'none';
+            document.getElementById('gifBtn').style.display = 'none';
+            document.getElementById('musicDownloadBtn').style.display = 'none';
+            document.getElementById('mainDownloadBtn').style.display = 'flex';
+            document.getElementById('normalCopyBtn').style.display = 'flex';
+            document.getElementById('profileCard').style.display = 'none';
+            document.getElementById('glassAudioPlayer').style.display = 'none';
+            allImages = [];
+            
+            audioSource.pause(); audioSource.src = "";
+            video.pause(); video.src = "";
+            audioPlayBtn.className = 'fas fa-play audio-main-btn';
+            audioDisc.classList.remove('playing');
+        }
+
+        function extractYTId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length == 11) ? match[2] : false;
+        }
+
+        async function downloadYTThumb() {
+            try {
+                notify(getI18nText("msgDownloadingImg", "جاري تحميل الصورة..."));
+                const response = await fetch(currentYTThumb);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `StarGrab_Thumb_${Date.now()}.jpg`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } catch (e) { window.open(currentYTThumb, '_blank'); }
+        }
+
+        function updateProfileInfo(d, r) {
+            const card = document.getElementById('profileCard'); card.style.display = 'flex';
+            const author = d?.author || {};
+            document.getElementById('creatorAvatar').src = author.avatar || r.thumbnail || '';
+            document.getElementById('creatorName').innerText = author.nickname || r.author_name || 'StarGrab User';
+            document.getElementById('creatorHandle').innerText = author.unique_id ? `@${author.unique_id}` : '@user';
+            document.getElementById('videoDesc').innerText = d?.title || r.title || 'بدون وصف';
+            document.getElementById('statViews').innerText = formatNum(d?.play_count || 0);
+            document.getElementById('statLikes').innerText = formatNum(d?.digg_count || 0);
+            document.getElementById('statComments').innerText = formatNum(d?.comment_count || 0);
+            document.getElementById('statShares').innerText = formatNum(d?.share_count || 0);
+        }
+
+        function formatNum(n) { if(n >= 1e6) return (n/1e6).toFixed(1) + 'M'; if(n >= 1e3) return (n/1e3).toFixed(1) + 'K'; return n; }
+
+        function toggleAudio() {
+            if(audioSource.paused) { audioSource.play(); audioPlayBtn.className = 'fas fa-pause audio-main-btn'; audioDisc.classList.add('playing'); } 
+            else { audioSource.pause(); audioPlayBtn.className = 'fas fa-play audio-main-btn'; audioDisc.classList.remove('playing'); }
+        }
+
+        let isDraggingAudio = false;
+        const updateAudioSeek = (e) => {
+            if(!audioSource.duration) return;
+            const rect = audioProgressContainer.getBoundingClientRect();
+            let x = (e.touches ? e.touches[0].clientX : e.clientX);
+            let pos = (x - rect.left) / rect.width;
+            pos = Math.max(0, Math.min(pos, 1));
+            audioSource.currentTime = pos * audioSource.duration;
+            audioProgressBar.style.width = `${pos * 100}%`;
+            audioHandle.style.left = `${pos * 100}%`;
+        };
+
+        audioProgressContainer.addEventListener('mousedown', (e) => { isDraggingAudio = true; updateAudioSeek(e); });
+        audioProgressContainer.addEventListener('touchstart', (e) => { isDraggingAudio = true; updateAudioSeek(e); }, {passive: false});
+
+        window.addEventListener('mousemove', (e) => { if(isDraggingAudio) updateAudioSeek(e); });
+        window.addEventListener('touchmove', (e) => { if(isDraggingAudio) { updateAudioSeek(e); e.preventDefault(); } }, {passive: false});
+        window.addEventListener('mouseup', () => isDraggingAudio = false);
+        window.addEventListener('touchend', () => isDraggingAudio = false);
+
+        audioSource.addEventListener('timeupdate', () => {
+            if(!isDraggingAudio) {
+                const p = (audioSource.currentTime / audioSource.duration) * 100;
+                audioProgressBar.style.width = `${p}%`;
+                audioHandle.style.left = `${p}%`;
+                document.getElementById('audioCurrentTime').innerText = formatTime(audioSource.currentTime);
+            }
+        });
+        audioSource.addEventListener('loadedmetadata', () => { document.getElementById('audioDuration').innerText = formatTime(audioSource.duration); });
+
+        let isDragging = false;
+        const prog = document.getElementById('progressContainer');
+        const updateSeek = (e) => {
+            if(!video.duration) return;
+            const rect = prog.getBoundingClientRect();
+            let x = (e.touches ? e.touches[0].clientX : e.clientX);
+            let pos = (x - rect.left) / rect.width;
+            pos = Math.max(0, Math.min(pos, 1));
+            video.currentTime = pos * video.duration;
+            progressBar.style.width = `${pos * 100}%`;
+            document.getElementById('progressHandle').style.left = `${pos * 100}%`;
+        };
+
+        prog.addEventListener('mousedown', (e) => { isDragging = true; updateSeek(e); });
+        prog.addEventListener('touchstart', (e) => { isDragging = true; updateSeek(e); }, {passive: false});
+
+        window.addEventListener('mousemove', (e) => { if(isDragging) updateSeek(e); });
+        window.addEventListener('touchmove', (e) => { if(isDragging) { updateSeek(e); e.preventDefault(); } }, {passive: false});
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('touchend', () => isDragging = false);
+
+        function handleArrowClick(dir, e) { e.stopPropagation(); currentImageIndex += dir; if(currentImageIndex<0) currentImageIndex=allImages.length-1; if(currentImageIndex>=allImages.length) currentImageIndex=0; updateSlider(); }
+        function handleDotClick(i) { currentImageIndex = i; updateSlider(); }
+        function updateSlider() { 
+            const dots = document.querySelectorAll('.dot'); dots.forEach((dot, i) => dot.classList.toggle('active', i === currentImageIndex));
+            sliderWrapper.style.transform = `translateX(-${currentImageIndex * 100}%)`; 
+        }
+
+        async function convertToGif() {
+            if(!currentVideoLink) return;
+            notify(getI18nText("msgProcessingGif", "جاري معالجة الـ GIF..."));
+            const btn = document.getElementById('gifBtn');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '... <i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+
+            gifshot.createGIF({
+                video: [currentVideoLink],
+                gifWidth: 400, gifHeight: 400, interval: 0.1, numFrames: 15, 
+                frameDuration: 1, sampleInterval: 10
+            }, function(obj) {
+                if(!obj.error) {
+                    const link = document.createElement('a'); link.href = obj.image;
+                    link.download = `StarGrab_GIF_${Date.now()}.gif`; link.click();
+                    notify(getI18nText("msgGifSuccess", "تم تحويل الفيديو بنجاح! 🎉"));
+                } else { notify(getI18nText("msgGifFail", "عذراً، فشل التحويل")); }
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            });
+        }
+
+        function formatTime(s) { if(isNaN(s)) return "00:00"; let m=Math.floor(s/60), sec=Math.floor(s%60); return `${m<10?'0'+m:m}:${sec<10?'0'+sec:sec}`; }
+        function notify(msg) { const a = document.getElementById('customAlert'); document.getElementById('alertMsg').innerText = msg; a.classList.add('show'); setTimeout(()=>a.classList.remove('show'), 3000); }
+        async function pasteLink() { try { const t = await navigator.clipboard.readText(); document.getElementById('urlInput').value = t; notify(getI18nText("msgPasting", "تم اللصق")); } catch(e) { notify(getI18nText("msgPermission", "يرجى إعطاء صلاحية اللصق")); } }
+        function copyLink() { navigator.clipboard.writeText(currentYTThumb || currentVideoLink); notify(getI18nText("msgCopied", "تم النسخ")); }
+        function toggleOverlay(id) { document.getElementById(id).classList.toggle('active'); }
+        
+        function openPolicyPage() {
+            document.getElementById('menuOverlay').classList.remove('active');
+            document.getElementById('policyOverlay').classList.add('active');
+        }
+
+        function toggleTheme() { 
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            document.getElementById('themeBtn').innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        function handleDownloadRequest() {
+            if (isImageMode && allImages.length > 1) {
+                const count = allImages.length;
+                const modal = document.getElementById('saveModalOverlay');
+                const btnAll = document.getElementById('btnSaveAll');
+                const btnThis = document.getElementById('btnSaveThis');
+                
+                if (count === 2) {
+                    btnAll.innerText = getI18nText("btnSaveAll", "كلتا الصورتين");
+                } else {
+                    let bulkText = getI18nText("msgBulkDownload", "حفظ الـ {count} صور");
+                    btnAll.innerText = bulkText.replace("{count}", count);
+                }
+                
+                btnThis.onclick = () => { closeSaveModal(); downloadFile(allImages[currentImageIndex], 'jpg'); };
+                btnAll.onclick = () => { closeSaveModal(); downloadAllImages(); };
+                
+                modal.style.display = 'flex';
+            } else {
+                const link = isImageMode ? allImages[0] : currentVideoLink;
+                downloadFile(link, isImageMode ? 'jpg' : 'mp4');
+            }
+        }
+
+        function closeSaveModal() { document.getElementById('saveModalOverlay').style.display = 'none'; }
+
+        async function downloadAllImages() {
+            let bulkNotify = getI18nText("msgBulkDownload", "جاري تحميل {count} صور...");
+            notify(bulkNotify.replace("{count}", allImages.length));
+            for (let i = 0; i < allImages.length; i++) {
+                await downloadFile(allImages[i], `img_${i+1}.jpg`, true);
+                await new Promise(r => setTimeout(r, 300));
+            }
+        }
+
+        async function downloadFile(url, ext, isBulk = false) { 
+            if(!isBulk) notify(getI18nText("msgDownloading", "جاري التحميل..."));
+            try {
+                const r = await fetch(url); const b = await r.blob(); const a = document.createElement('a'); 
+                a.href = URL.createObjectURL(b); 
+                a.download = isBulk ? ext : `StarGrab_${Date.now()}.${ext}`; 
+                a.click(); 
+            } catch(e) { if(!isBulk) notify(getI18nText("msgDownloadError", "خطأ في التحميل")); }
+        }
+
+        async function downloadMusic() { 
+            if(!currentMusicLink) return;
+            notify(getI18nText("msgMusicDownloading", "جاري تحميل الموسيقى..."));
+            try {
+                const r = await fetch(currentMusicLink); const b = await r.blob(); const a = document.createElement('a'); 
+                a.href = URL.createObjectURL(b); a.download = `Music_${Date.now()}.mp3`; a.click(); 
+            } catch(e) { notify(getI18nText("msgMusicError", "خطأ في تحميل الموسيقى")); }
+        }
+
+        function saveToHistory(url, thumb) { 
+            let h = JSON.parse(localStorage.getItem('ws_history_v2') || '[]'); 
+            h = h.filter(i => i.url !== url); h.unshift({url, thumb}); 
+            localStorage.setItem('ws_history_v2', JSON.stringify(h)); renderHistory(); 
+        }
+        function renderHistory() { 
+            const h = JSON.parse(localStorage.getItem('ws_history_v2') || '[]'); 
+            const main = document.getElementById('mainHistoryList'), full = document.getElementById('fullHistoryContainer'); 
+            let reDownloadText = getI18nText("reDownload", "إعادة تحميل");
+            main.innerHTML = h.slice(0,3).map(i => `<div class="history-item"><div class="history-content"><div class="history-url">${i.url}</div><div class="history-btn" onclick="reDownload('${i.url}')">${reDownloadText}</div></div><img src="${i.thumb}" class="history-thumb"></div>`).join('');
+            full.innerHTML = h.map(i => `<div class="history-item"><div class="history-content"><div class="history-url">${i.url}</div><div class="history-btn" onclick="reDownload('${i.url}')">${reDownloadText}</div></div><img src="${i.thumb}" class="history-thumb"></div>`).join('');
+        }
+        function reDownload(u) { document.getElementById('urlInput').value = u; document.getElementById('archiveOverlay').classList.remove('active'); processVideo(); }
+
+        window.onload = function() {
+            initLanguageSystem();
+            renderHistory();
+        };
+    </script>
+</body>
+</html>
